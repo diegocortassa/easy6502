@@ -1,6 +1,4 @@
 safe: true
 lsi: false
-highlighter: pygments
-markdown: rdiscount
-rdiscount:
-  extensions: [smart]
+highlighter: rouge
+markdown: kramdown
