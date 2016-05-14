@@ -2,53 +2,45 @@
 layout: default
 ---
 
-<h2 id="intro">Introduction</h2>
+<h2 id="intro">Introduzione</h2>
+Piccolo tutorial sulla programmazione assmebly per il processore [MOS 6502](https://en.wikipedia.org/wiki/MOS_Technology_6502)
 
-In this tiny ebook I'm going to show you how to get started writing 6502
-assembly language. The 6502 processor was massive in the seventies and
-eighties, powering famous computers like the
-[BBC Micro](http://en.wikipedia.org/wiki/BBC_Micro),
-[Atari 2600](http://en.wikipedia.org/wiki/Atari_2600),
-[Commodore 64](http://en.wikipedia.org/wiki/Commodore_64),
-[Apple II](http://en.wikipedia.org/wiki/Apple_II), and the [Nintendo Entertainment
-System](http://en.wikipedia.org/wiki/Nintendo_Entertainment_System). Bender in
-Futurama [has a 6502 processor for a
-brain](http://www.transbyte.org/SID/SID-files/Bender_6502.jpg). [Even the
-Terminator was programmed in
-6502](http://www.pagetable.com/docs/terminator/00-37-23.jpg).
+Questo tutorial è un adattamento a cura di Diego Cortassa del tutorial originale di Nick Morgan pubblicato su [easy6502](http://skilldrick.github.io/easy6502/)
 
-So, why would you want to learn 6502? It's a dead language isn't it? Well,
-so's Latin. And they still teach that.
-[Q.E.D.](http://en.wikipedia.org/wiki/Q.E.D.)
+Si utilizza un simulatore di 6502 scritto in Javascript.
 
-(Actually, I've been reliably informed that 6502 processors are still being
-produced by [Western Design Center](http://www.westerndesigncenter.com/wdc/w65c02s-chip.cfm)
-and [sold to hobbyists](http://www.mouser.co.uk/Search/Refine.aspx?Keyword=65C02), so clearly 6502
-*isn't* a dead language! Who knew?)
+- La memoria emulata va da `$0000` a `$ffff` (l'intero spazio indirizzabile da un 6502)
 
-Seriously though, I think it's valuable to have an understanding of assembly
-language. Assembly language is the lowest level of abstraction in computers -
-the point at which the code is still readable. Assembly language translates
-directly to the bytes that are executed by your computer's processor.
-If you understand how it works, you've basically become a computer
-[magician](http://skilldrick.co.uk/2011/04/magic-in-software-development/).
+- La locazione di memoria `$fe` contiene un numero casuale che cambia ad ogni istruzione del processore.
 
-Then why 6502? Why not a *useful* assembly language, like
-[x86](http://en.wikipedia.org/wiki/X86)? Well, I don't think learning x86 is
-useful. I don't think you'll ever have to *write* assembly language in your day
-job - this is purely an academic exercise, something to expand your mind and
-your thinking. 6502 was originally written in a different age, a time when the majority of
-developers were writing assembly directly, rather than in these new-fangled
-high-level programming languages. So, it was designed to be written by humans.
-More modern assembly languages are meant to written by compilers, so let's
-leave it to them. Plus, 6502 is *fun*. Nobody ever called x86 *fun*.
+- La locazione di memoria `$ff` contiene il codice ascii dell'ultimo tasto premuto.
+
+- La zona di memoria dalla locazione `$200` alla locazione `$5ff` e mappata sui pixel dello schermo simulato. Inserendo differenti valori si disegneranno pixel di diverso colore.
+
+I colori utilizzabili sono:
+
+    $0: Nero
+    $1: Bianco
+    $2: Rosso
+    $3: Ciano
+    $4: Viola
+    $5: Verde
+    $6: Blu
+    $7: Giallo
+    $8: Arancione
+    $9: Marrone
+    $a: Rosso chiaro
+    $b: Grigio scuro
+    $c: Grigio
+    $d: Verde chiaro
+    $e: Blue chiaro
+    $f: Grigio chiaro
 
 
-<h2 id="first-program">Our first program</h2>
+<h2 id="first-program">Il primo programma</h2>
 
-So, let's dive in! That thing below is a little [JavaScript 6502 assembler and
-simulator](https://github.com/skilldrick/6502js) that I adapted for this book.
-Click **Assemble** then **Run** to assemble and run the snippet of assembly language.
+
+Clicca su **Assemble** e poi **Run** per assemblare ed eseguire il frammento di codice assembly.
 
 {% include start.html %}
 LDA #$01
@@ -59,15 +51,9 @@ LDA #$08
 STA $0202
 {% include end.html %}
 
-Hopefully the black area on the right now has three coloured "pixels" at the
-top left. (If this doesn't work, you'll probably need to upgrade your browser to
-something more modern, like Chrome or Firefox.)
+Sullo schermo simulato nero appariranno tre "pixel" colorati in alto a sinistra.
 
-So, what's this program actually doing? Let's step through it with the
-debugger. Hit **Reset**, then check the **Debugger** checkbox to start the
-debugger. Click **Step** once. If you were watching carefully, you'll have
-noticed that `A=` changed from `$00` to `$01`, and `PC=` changed from `$0600` to
-`$0602`.
+Cosa fa realmente questo programma? E' possibile eseguirlo passo per passo utilizzando il debugger. Premi **Reset** e attiva la spunta **Debugger** per far partire il debugger. Premi **Step** per avvnzare un istruzione alla volta. noterai che  `A=` è cambiato da `$00` a `$01`, ae `PC=` è cambiato da `$0600` a`$0602`.
 
 Any numbers prefixed with `$` in 6502 assembly language (and by extension, in
 this book) are in hexadecimal (hex) format. If you're not familiar with hex
