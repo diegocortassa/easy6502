@@ -1,11 +1,10 @@
 # easy6502
-Easy6502 by Nick Morgan is one-stop accessible tutorial on 6502 assembly language programming,
+This is a fork of Easy6502 by Nick Morgan, a one-stop accessible tutorial on 6502 assembly language programming,
 including a series of worked example programs which you can edit and run in the embedded emulator.
 
-See http://skilldrick.github.io/easy6502/ for the live site.
+It was transalted to italian and adapted for introducting assembly to a class by Diego Cortassa
 
-This (original) fork is now in a strict maintenance-only mode. Pull requests are welcome for bug fixes.
+See http://www.cortassa.net/easy6502/ for the live site.
 
-Please see other active forks for further refinements and developments of the tutorial and the emulator:
-https://github.com/skilldrick/easy6502/network
+See http://skilldrick.github.io/easy6502/ for the original site.
 
